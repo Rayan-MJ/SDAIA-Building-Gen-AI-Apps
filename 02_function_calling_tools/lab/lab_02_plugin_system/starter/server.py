@@ -1,7 +1,7 @@
 """
 MCP Server — Expose Tools via Model Context Protocol
 =====================================================
-Wrap the ToolRegistry in a FastMCP server so any MCP-compliant
+Wrapper the ToolRegistry in a FastMCP server so any MCP-compliant
 client can discover and use your tools.
 
 Prerequisites: Copy your completed Lab 2 files into this directory,
@@ -9,8 +9,8 @@ or use them directly if they're in the same folder.
 
 Steps:
   1. Registry is initialized for you (see below)
-  2. TODO: Add @mcp.tool() for the calculate function
-  3. TODO: Add @mcp.tool() for list_files
+  2. TODO: Add @mcp.tool() for the calculate function (use registry.execute_secure)
+  3. TODO: Add @mcp.tool() for list_files (use registry.execute_secure)
   4. TODO: Add @mcp.resource() for system logs
 """
 

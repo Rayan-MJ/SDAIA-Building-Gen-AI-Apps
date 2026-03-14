@@ -42,6 +42,11 @@ class PathSanitizer:
           4. Otherwise return the resolved path
         """
         # TODO: Implement path validation
+        # Hint:
+        # 1. base_abs = os.path.abspath(base_dir)
+        # 2. target_abs = os.path.abspath(os.path.join(base_abs, target_path))
+        # 3. if not target_abs.startswith(base_abs): raise SecurityError("Traversal detected")
+        # 4. return target_abs
         pass
 
 

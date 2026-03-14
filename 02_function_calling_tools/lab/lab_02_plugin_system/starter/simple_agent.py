@@ -20,8 +20,9 @@ async def run_agent():
     """Connect to the MCP server and interact with tools."""
 
     # Define how to spawn the server as a subprocess
+    import sys
     server_params = StdioServerParameters(
-        command="python",
+        command=sys.executable,
         args=["server.py"],
         env=None
     )
@@ -54,10 +55,14 @@ async def run_agent():
             )
             print(f"Result: {result2.content[0].text}")
 
-            # List files
+            # List files (Demonstrates success with permissions)
             print("\nExecuting 'list_files': '.'")
             result3 = await session.call_tool("list_files", arguments={"path": "."})
             print(f"Result: {result3.content[0].text}")
+
+            # Note: The ToolRegistry handles permissions. To demonstrate a failure,
+            # you would need to modify server.py to pass an empty permission list
+            # to registry.execute_secure().
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ Define focused system prompts and a single dispatch function.
 Each specialist should REFUSE to do work outside its niche.
 """
 
-from litellm import completion
+from litellm import acompletion
 from config import MODEL_NAME
 
 
@@ -35,7 +35,7 @@ SPECIALIST_PROMPTS = {
 }
 
 
-def call_specialist(specialist: str, task: str) -> str:
+async def call_specialist(specialist: str, task: str) -> str:
     """Invoke a named specialist with a task and return its response."""
     # TODO: Look up the system prompt for `specialist` from SPECIALIST_PROMPTS,
     #       call the LLM, and return the response content.

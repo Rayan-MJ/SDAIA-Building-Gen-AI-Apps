@@ -29,7 +29,7 @@ You will build a newsroom agent with three specialists:
 - Write focused **system prompts** that constrain agent behaviour.
 - Model a plan as **structured output** using Pydantic (`PlanStep`, `Plan`).
 - Implement the **execute loop**: dispatch each step to the right specialist and pass dependency context forward.
-- Understand why a **SharedWorkspace is no longer needed** — a plain `dict` of step results is sufficient.
+- Store step results in a plain `dict` for lookup by dependency.
 
 ---
 

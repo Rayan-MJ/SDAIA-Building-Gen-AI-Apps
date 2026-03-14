@@ -95,12 +95,33 @@ class ToolRegistry:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
-    from calculator_tool import CalculatorTool
-    from filesystem import ListFilesTool
+    class MockTool(BaseTool):
+        @property
+        def name(self) -> str: return "mock_tool"
+        @property
+        def description(self) -> str: return "A mock tool for testing."
+        @property
+        def parameters(self) -> Dict[str, Any]: return {"type": "object", "properties": {}}
+        def execute(self, **kwargs) -> Dict[str, Any]:
+            return {"success": True, "result": "mock_success", "error": None}
 
     registry = ToolRegistry()
-    registry.register(CalculatorTool())
-    registry.register(ListFilesTool())
+    registry.register(MockTool())
+
+    print("--- Registry Independent Test ---")
+    print(f"Schemas: {len(registry.get_schemas())}")
+    print(f"Execute: {registry.execute('mock_tool', {})}")
+    print("--------------------------------\n")
+
+    # Optional: Load real tools if they exist
+    try:
+        from calculator_tool import CalculatorTool
+        from filesystem import ListFilesTool
+        registry.register(CalculatorTool())
+        registry.register(ListFilesTool())
+        print("Real tools loaded successfully.\n")
+    except (ImportError, AttributeError):
+        print("Skipping real tools (not implemented yet).\n")
 
     print("Registered tools:")
     for schema in registry.get_schemas():
