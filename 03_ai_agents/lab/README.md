@@ -4,11 +4,11 @@ This directory contains the labs for Module 03.
 
 ## Labs Overview
 
-### [01: Multi-Agent Newsroom](lab_01_multi_agent_newsroom.ipynb)
-Build a collaborative multi-agent system where specialized roles (Researcher, Writer, Editor) work together to produce news articles.
+### [01: Observability & Evaluation](lab_01_observability_and_evaluation.ipynb)
+Implement tracing, loop detection, cost tracking, and automated evaluation using DeepEval.
 
-### [02: Routing & Resilience](lab_02_routing_and_resilience.ipynb)
-Implement advanced agentic patterns including semantic routing, error handling, and loop detection to build robust systems.
+### [02: Multi-Agent Newsroom](lab_02_multi_agent_newsroom.ipynb)
+Build a collaborative multi-agent system where specialized roles (Researcher, Writer, Editor) work together to produce news articles.
 
 ---
 

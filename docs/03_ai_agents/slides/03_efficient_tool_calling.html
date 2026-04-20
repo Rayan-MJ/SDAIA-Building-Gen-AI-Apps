@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="02_patterns_of_collaboration_files/libs/clipboard/clipboard.min.js"></script>
-<script src="02_patterns_of_collaboration_files/libs/quarto-html/tabby.min.js"></script>
-<script src="02_patterns_of_collaboration_files/libs/quarto-html/popper.min.js"></script>
-<script src="02_patterns_of_collaboration_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="02_patterns_of_collaboration_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="02_patterns_of_collaboration_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="02_patterns_of_collaboration_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="03_efficient_tool_calling_files/libs/clipboard/clipboard.min.js"></script>
+<script src="03_efficient_tool_calling_files/libs/quarto-html/tabby.min.js"></script>
+<script src="03_efficient_tool_calling_files/libs/quarto-html/popper.min.js"></script>
+<script src="03_efficient_tool_calling_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="03_efficient_tool_calling_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="03_efficient_tool_calling_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="03_efficient_tool_calling_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
   <meta name="dcterms.date" content="2026-04-20">
-  <title>Patterns of Collaboration</title>
+  <title>Efficient Tool Calling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="02_patterns_of_collaboration_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="02_patterns_of_collaboration_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="03_efficient_tool_calling_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="03_efficient_tool_calling_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -95,11 +95,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="02_patterns_of_collaboration_files/libs/revealjs/dist/theme/quarto-11fb225df25554060309039e467d350a.css">
-  <link href="02_patterns_of_collaboration_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="02_patterns_of_collaboration_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="02_patterns_of_collaboration_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="02_patterns_of_collaboration_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="03_efficient_tool_calling_files/libs/revealjs/dist/theme/quarto-11fb225df25554060309039e467d350a.css">
+  <link href="03_efficient_tool_calling_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="03_efficient_tool_calling_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="03_efficient_tool_calling_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="03_efficient_tool_calling_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -187,9 +187,9 @@
       margin-right: 0; 
     }
   </style>
-  <script src="02_patterns_of_collaboration_files/libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="02_patterns_of_collaboration_files/libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="02_patterns_of_collaboration_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <script src="03_efficient_tool_calling_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="03_efficient_tool_calling_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCA4MCI+DQogIDxkZWZzPg0KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9Ii0xLjkxMSIgeDI9IjIuOTg1IiB5MT0iLS44NDEiIHkyPSIxLjQxNCIgZ3JhZGllbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giPg0KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjOTlkNjMzIi8+DQogICAgICA8c3RvcCBvZmZzZXQ9Ii41IiBzdG9wLWNvbG9yPSIjM2M5Ii8+DQogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyNzM0NzAiLz4NCiAgICA8L2xpbmVhckdyYWRpZW50Pg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYSIgaWQ9ImQiIHgxPSItMy41NjkiIHgyPSIxLjMyOCIgeTE9Ii0xLjYwNSIgeTI9Ii42NTEiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2EiIGlkPSJlIiB4MT0iLTMuMDQ3IiB4Mj0iMS44NDkiIHkxPSItLjkwNCIgeTI9IjEuMzUyIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0iZiIgeDE9Ii0yLjg5IiB4Mj0iMi4wMDciIHkxPSItMS4yOTIiIHkyPSIuOTY0Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0iZyIgeDE9Ii0yLjQiIHgyPSIyLjQ5NyIgeTE9Ii0xLjA2NiIgeTI9IjEuMTg5Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0iaCIgeDE9Ii0uOTkyIiB4Mj0iMi42NzkiIHkxPSItLjQxOCIgeTI9IjEuMjczIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0iaSIgeDE9Ii0xLjUxMiIgeDI9IjIuMTU5IiB5MT0iLS4xOTciIHkyPSIxLjQ5NSIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYSIgaWQ9ImoiIHgxPSItLjkxNCIgeDI9IjIuNzU4IiB5MT0iLjA3OSIgeTI9IjEuNzcxIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0iayIgeDE9Ii0zLjQwNSIgeDI9IjEuNDkzIiB5MT0iLTEuMDY4IiB5Mj0iMS4xODciLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2EiIGlkPSJsIiB4MT0iLjM0NyIgeDI9IjMuMjg1IiB5MT0iLjE5OSIgeTI9IjEuNTUyIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0ibSIgeDE9Ii0uOTA1IiB4Mj0iMi43NjciIHkxPSIuMDgzIiB5Mj0iMS43NzUiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2EiIGlkPSJuIiB4MT0iLTIuMTE5IiB4Mj0iMi43NzgiIHkxPSItLjQ3NiIgeTI9IjEuNzc5Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0ibyIgeDE9Ii01LjY0NCIgeDI9Ii40ODYiIHkxPSItMi45OTgiIHkyPSIuNzQxIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0icCIgeDE9Ii0zLjQ5NSIgeDI9IjIuNjM2IiB5MT0iLTEuNjg3IiB5Mj0iMi4wNTMiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2EiIGlkPSJxIiB4MT0iLTEuNDIyIiB4Mj0iMy4xNzUiIHkxPSItLjkyMyIgeTI9IjEuODgyIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNhIiBpZD0iciIgeDE9Ii0zLjMwNiIgeDI9IjIuODI1IiB5MT0iLTIuMDcyIiB5Mj0iMS42NjgiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2EiIGlkPSJzIiB4MT0iLTEuNjgzIiB4Mj0iMi45MTQiIHkxPSItMS4wODEiIHkyPSIxLjcyMyIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYSIgaWQ9InQiIHgxPSItMS4xNTgiIHgyPSIyLjUyMSIgeTE9Ii0uMjYxIiB5Mj0iMS45ODMiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgxPSIuMjYxIiB4Mj0iLjYyNCIgeTE9IjMuNTYiIHkyPSItMS40NjkiIGdyYWRpZW50VW5pdHM9Im9iamVjdEJvdW5kaW5nQm94Ij4NCiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzZjZiIvPg0KICAgICAgPHN0b3Agb2Zmc2V0PSIuNSIgc3RvcC1jb2xvcj0iIzYyNThhNiIvPg0KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjczNDcwIi8+DQogICAgPC9saW5lYXJHcmFkaWVudD4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2IiIGlkPSJ1IiB4MT0iLjE2MyIgeDI9Ii41MjYiIHkxPSI0LjkyNCIgeTI9Ii0uMTAzIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNiIiBpZD0idiIgeDE9Ii4zODYiIHgyPSIuNjU4IiB5MT0iMS44MjUiIHkyPSItMS45NDUiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2IiIGlkPSJ3IiB4MT0iLjI1MiIgeDI9Ii42MTUiIHkxPSI0LjE4MiIgeTI9Ii0uODQ1Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNiIiBpZD0ieCIgeDE9Ii40MTciIHgyPSIuNjg5IiB5MT0iMS45IiB5Mj0iLTEuODciLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2IiIGlkPSJ5IiB4MT0iLjQ4NSIgeDI9Ii43MDMiIHkxPSIuOTU2IiB5Mj0iLTIuMDYiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2IiIGlkPSJ6IiB4MT0iLjM3NyIgeDI9Ii42NDkiIHkxPSIyLjQ1NSIgeTI9Ii0xLjMxNCIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYiIgaWQ9IkEiIHgxPSIuMTk5IiB4Mj0iLjU2MiIgeTE9IjQuOTIyIiB5Mj0iLS4xMDUiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2IiIGlkPSJCIiB4MT0iLjQzNyIgeDI9Ii43MDkiIHkxPSIxLjYyNSIgeTI9Ii0yLjE0NSIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYiIgaWQ9IkMiIHgxPSIuMjYxIiB4Mj0iLjYyNCIgeTE9IjQuMDU1IiB5Mj0iLS45NzIiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2IiIGlkPSJEIiB4MT0iLjUiIHgyPSIuNSIgeTE9IjMuMDQ1IiB5Mj0iLTEuOTI3Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNiIiBpZD0iRSIgeDE9Ii41IiB4Mj0iLjUiIHkxPSI0LjkwMSIgeTI9Ii0uMDcyIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNiIiBpZD0iRiIgeDE9Ii41IiB4Mj0iLjUiIHkxPSIyLjQzNSIgeTI9Ii0xLjI5NiIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYiIgaWQ9IkciIHgxPSIuNSIgeDI9Ii41IiB5MT0iLjkzNCIgeTI9Ii0yLjA1Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNiIiBpZD0iSCIgeDE9Ii41IiB4Mj0iLjUiIHkxPSIzLjc4NSIgeTI9Ii0xLjE4NyIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYiIgaWQ9IkkiIHgxPSIuNSIgeDI9Ii41IiB5MT0iMS44MDkiIHkyPSItMS45MjEiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2IiIGlkPSJKIiB4MT0iLjUiIHgyPSIuNSIgeTE9IjMuMDQ2IiB5Mj0iLTEuOTI4Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNiIiBpZD0iSyIgeDE9Ii41IiB4Mj0iLjUiIHkxPSIyLjc5NCIgeTI9Ii0yLjE3NyIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYyIgeDE9IjUuMDEiIHgyPSItMi4yNzciIHkxPSItMS4zODMiIHkyPSIyLjAzOSIgZ3JhZGllbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giPg0KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmRiZDRkIi8+DQogICAgICA8c3RvcCBvZmZzZXQ9Ii41IiBzdG9wLWNvbG9yPSIjZjYzIi8+DQogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyNzM0NzAiLz4NCiAgICA8L2xpbmVhckdyYWRpZW50Pg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYyIgaWQ9IkwiIHgxPSIyLjIzOSIgeDI9Ii0yLjEzNCIgeTE9Ii0uMDgyIiB5Mj0iMS45NzEiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2MiIGlkPSJNIiB4MT0iNi4wOTgiIHgyPSItMS4xOTEiIHkxPSItMS44OTMiIHkyPSIxLjUyOCIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYyIgaWQ9Ik4iIHgxPSIzLjM4NCIgeDI9Ii0yLjA4MSIgeTE9Ii0xLjA4OCIgeTI9IjEuNDc3Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNjIiBpZD0iTyIgeDE9IjIuNzgiIHgyPSItMi42ODYiIHkxPSItLjgwNSIgeTI9IjEuNzYxIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNjIiBpZD0iUCIgeDE9IjcuMDc0IiB4Mj0iLS4yMTIiIHkxPSItMi4zNTMiIHkyPSIxLjA2OSIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYyIgaWQ9IlEiIHgxPSI1LjA3NSIgeDI9Ii0yLjIxMSIgeTE9Ii0xLjQxNCIgeTI9IjIuMDA4Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNjIiBpZD0iUiIgeDE9IjUuNzM2IiB4Mj0iLTEuNTUiIHkxPSItMi4xOTQiIHkyPSIxLjIyOCIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYyIgaWQ9IlMiIHgxPSIyLjA4MSIgeDI9Ii0xLjc4MSIgeTE9Ii0uMDQ3IiB5Mj0iMS45Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNjIiBpZD0iVCIgeDE9Ii43MjkiIHgyPSItMi4zNjEiIHkxPSIuMTM1IiB5Mj0iMS42OTIiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2MiIGlkPSJVIiB4MT0iMi43MTciIHgyPSItMi40MzMiIHkxPSItLjg2OCIgeTI9IjEuNzI4Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNjIiBpZD0iViIgeDE9IjEuNTE3IiB4Mj0iLTIuMzQ3IiB5MT0iLS4yNjIiIHkyPSIxLjY4NCIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYyIgaWQ9IlciIHgxPSIzLjU0NCIgeDI9Ii0xLjYwNiIgeTE9Ii0xLjI4NCIgeTI9IjEuMzEyIi8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNjIiBpZD0iWCIgeDE9IjIuNjMxIiB4Mj0iLTEuMjMzIiB5MT0iLS4zMjQiIHkyPSIxLjYyMyIvPg0KICAgIDxsaW5lYXJHcmFkaWVudCBocmVmPSIjYyIgaWQ9IlkiIHgxPSIyLjAwMyIgeDI9Ii0xLjg2IiB5MT0iLS4wMDciIHkyPSIxLjk0Ii8+DQogICAgPGxpbmVhckdyYWRpZW50IGhyZWY9IiNjIiBpZD0iWiIgeDE9IjQuMTI1IiB4Mj0iLTEuMDI1IiB5MT0iLTEuMDc3IiB5Mj0iMS41MTgiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2MiIGlkPSJhYSIgeDE9IjMuMDIyIiB4Mj0iLTIuMTI3IiB5MT0iLTEuMDIxIiB5Mj0iMS41NzQiLz4NCiAgICA8bGluZWFyR3JhZGllbnQgaHJlZj0iI2MiIGlkPSJhYiIgeDE9IjQuNjgxIiB4Mj0iLS40NjkiIHkxPSItMS44NTciIHkyPSIuNzM4Ii8+DQogIDwvZGVmcz4NCiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMy44IDEpIj4NCiAgPHBhdGggZmlsbD0iIzNjOSIgZD0ibTM2LjA0MSAyNi41My0xMS40NDggNi42MTF2MTMuMjJsMTEuNDQ4IDYuNjEyIDExLjQ0Ni02LjYwOFYzMy4xNDFaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjYSkiIGQ9Ik03MS40NjQgMjAuOTF2Ny45MzJsLTYuODctMy45NjVaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjZCkiIGQ9Ik02NC4yNDkgNTIuOTdsNi44NjkgMy45NjV2LTcuOTNaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjZSkiIGQ9Im02OC4xIDQ2LjM1OSAtNi44NjkgMy45Njd2LTcuOTMyWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI2YpIiBkPSJNNzIuMzkyIDM1LjM3djcuOTMybC02Ljg2OSAtMy45NjVaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjZykiIGQ9Ik01Ni42NTEgNTYuODQ3djcuOTMybC02Ljg2OSAtMy45NjVaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjaCkiIGQ9Im01Ny43OTQgNTEuNjQzIC05LjE2IC01LjI4NiA5LjE2IC01LjI5WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI2kpIiBkPSJtNTcuNzk1IDUyLjk3IC05LjE2IDUuMjlWNDcuNjg0WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI2opIiBkPSJtNTcuNzkyIDM5Ljc0OSAtOS4xNTggNS4yODZ2LTEwLjU3MloiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNrKSIgZD0ibTU4LjUgNzAuMzE4IC02Ljg2OCAzLjk2N3YtNy45MzJaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjbCkiIGQ9Im00Ny40ODcgNDYuMzYxIC0xMS40NDYgLTYuNjEyIDExLjQ0NiAtNi42MTFaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjbSkiIGQ9Im00Ni4zNDQgNjEuMDc3IC05LjE1OCA1LjI4NnYtMTAuNTcyWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI24pIiBkPSJtNDUuMTk5IDc0LjAzNSAtNi44NjggMy45NjV2LTcuOTMyWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI28pIiBkPSJtNzAuMDIxIDYxLjc3NSAtNi44NjkgMy45Njd2LTcuOTMyWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI3ApIiBkPSJtNjguMSAzMy4xNDIgLTYuODY5IDMuOTY3di03LjkzMloiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNxKSIgZD0iTTU3Ljc5NCAyNy44NTJ2MTAuNTc2bC05LjE2IC01LjI5WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI3IpIiBkPSJNNDUuMjAyIDYyLjg5MXY3LjkzMmwtNi44NjkgLTMuOTY3WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI3MpIiBkPSJtNDYuMzQzIDU5Ljc1NiAtOS4xNTcgLTUuMjg2IDkuMTU3IC01LjI5WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI3QpIiBkPSJtMzYuMDQxIDM5Ljc1IDExLjQ0NiA2LjYxMiAtMTEuNDQ2IDYuNjA4WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI2IpIiBkPSJtNjkuMzM0IDE3LjAzMSAtNi44NjkgMy45NjV2LTcuOTNaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjdSkiIGQ9Im01OC4wODIgNS40NiAtNi44NzEgMy45Njd2LTcuOTMyWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI3YpIiBkPSJtNTcuNzk2IDI2LjUyOSAtOS4xNjIgNS4yODZWMjEuMjQxWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI3cpIiBkPSJtNDUuMiAxNC41NDUgLTYuODY5IC0zLjk2NSA2Ljg2OSAtMy45NjdaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjeCkiIGQ9Ik00Ni4zNDQgMTkuNzQ0VjMwLjMxOWwtOS4xNTggLTUuMjg2WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI3kpIiBkPSJNMzYuMDQxIDI2LjUzdjEzLjIyTDI0LjU5MyAzMy4xNDFaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjeikiIGQ9Im0zNC44OTcgMjMuNzA5IC05LjE1OCAtNS4yODYgOS4xNTggLTUuMjlaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjQSkiIGQ9Im0zMy43NSA3LjkzMiAtNi44NyAtMy45NjUgNi44NyAtMy45NjdaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjQikiIGQ9Im0yMy40NDkgMzEuODE2IC05LjE1OCAtNS4yOSA5LjE1OCAtNS4yODVaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjQykiIGQ9Ik0xOS43NiA2LjAzOXY3LjkzMmwtNi44NjkgLTMuOTY1WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI0QpIiBkPSJtNTYuNjQ3IDIyLjY1MSAtNi44NzEgLTMuOTY3IDYuODcxIC0zLjk2N1oiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNFKSIgZD0ibTQ1LjIgMy45NjcgLTYuODY5IDMuOTY1di03LjkzMloiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNGKSIgZD0ibTQ2LjM0NCAxOC40MTcgLTkuMTU4IDUuMjg2di0xMC41NjhaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjRykiIGQ9Im00Ny40ODcgMzMuMTQxIC0xMS40NDYgNi42MTF2LTEzLjIyWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI0gpIiBkPSJtMzMuNzUzIDEyLjgxNCAtNi44NzEgMy45Njd2LTcuOTMyWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI0kpIiBkPSJtMzQuODk2IDI1LjAzMyAtOS4xNTggNS4yODZ2LTEwLjU3NVoiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNKKSIgZD0ibTIyLjMgMTguNjg0IC02Ljg3IDMuOTY1di03LjkzWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI0spIiBkPSJtNy41NTYgMjQuNjM3IC02Ljg3IC0zLjk2NSA2Ljg3IC0zLjk2N1oiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNjKSIgZD0ibTMzLjc1MSA3OC4wMDEgLTYuODcxIC0zLjk2NSA2Ljg3MSAtMy45NjdaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjTCkiIGQ9Ik0zNi4wNDEgMzkuNzV2MTMuMjJsLTExLjQ0OCAtNi42MTJaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjTSkiIGQ9Ik0yMi4zIDY2Ljc2M3Y3LjkzMmwtNi44NyAtMy45NjZaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjTikiIGQ9Im0yMy40NDkgNDYuMzYyIC05LjE1OCA1LjI4NnYtMTAuNTc2WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI08pIiBkPSJtMjMuNDQ5IDMzLjE0MiAtOS4xNTggNS4yOXYtMTAuNThaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjUCkiIGQ9Ik05LjYxNiA1OS40MDF2Ny45M2wtNi44NzEgLTMuOTY1WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI1EpIiBkPSJNMTAuODUxIDI4Ljg5OXY3LjkzMmwtNi44NzEgLTMuOTY1WiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI1IpIiBkPSJtNi44NzEgNDAuMDkzIC02Ljg3MSAzLjk2NXYtNy45M1oiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNTKSIgZD0ibTM0Ljg5NCA2Ni4zNjcgLTkuMTYgLTUuMjg2IDkuMTYgLTUuMjlaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjVCkiIGQ9Im0zNi4wNDEgMzkuNzUgLTExLjQ0OCA2LjYwOHYtMTMuMjJaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjVSkiIGQ9Im0zMy43NSA2Ny40MjUgLTYuODcxIDMuOTY3di03LjkzMloiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNWKSIgZD0ibTM0Ljg5MiA1NC40NjcgLTkuMTU3IDUuMjl2LTEwLjU4MloiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNXKSIgZD0ibTIyLjI5OSA2MC44MTQgLTYuODY5IDMuOTY1di03LjkzWiIvPg0KICA8cGF0aCBmaWxsPSJ1cmwoI1gpIiBkPSJNMjMuNDQ5IDQ3LjY4M3YxMC41NzNsLTkuMTU4IC01LjI4NloiLz4NCiAgPHBhdGggZmlsbD0idXJsKCNZKSIgZD0iTTIzLjQ0OSAzNC40NTl2MTAuNTczbC05LjE1OCAtNS4yODNaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjWikiIGQ9Im0xMC44NSA1MC4zMjYgLTYuODcxIC0zLjk2NyA2Ljg3MSAtMy45NjVaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjYWEpIiBkPSJtNy4xNDUgMjYuNTMxIC02Ljg2OSAzLjk2NXYtNy45MzJaIi8+DQogIDxwYXRoIGZpbGw9InVybCgjYWIpIiBkPSJtNy41NTYgNTMuNDUyIC02Ljg3MSAzLjk2NXYtNy45MzVaIi8+DQogIDwvZz4NCjwvc3ZnPg0K">
 
 </head>
@@ -198,8 +198,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../../slides_template/assets/anim.svg" data-background-opacity="0.15" data-background-size="cover" class="quarto-title-block center">
-  <h1 class="title">Patterns of Collaboration</h1>
-  <p class="subtitle">AI Agents &amp; Orchestration — Session 2</p>
+  <h1 class="title">Efficient Tool Calling</h1>
+  <p class="subtitle">AI Agents &amp; Orchestration — Session 3</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -207,102 +207,52 @@
   <p class="date">2026-04-20</p>
 </section>
 <section>
-<section id="a.-why-multi-agent" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #00C9A7)">
-<h1>A. Why Multi-Agent?</h1>
-<p>Scaling from one brain to a team</p>
+<section id="a.-the-routing-problem" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #00C9A7)">
+<h1>A. The Routing Problem</h1>
+<p>When 50 tools is worse than 5</p>
 </section>
 <section id="agenda" class="slide level2">
 <h2>Agenda</h2>
 <ul>
-<li><strong>A. Why Multi-Agent?</strong> — The single-agent bottleneck (~10 min)</li>
-<li><strong>B. Specialist Roles</strong> — Researcher, Analyst, Writer (~15 min)</li>
-<li><strong>C. Orchestration Patterns</strong> — Pipeline, Hub-and-Spoke, Workspace (~20 min)</li>
-<li><strong>D. Parallelism</strong> — Async execution for independent tasks (~10 min)</li>
-<li><strong>E. Quality Gates</strong> — Review loops and conflict resolution (~15 min)</li>
-<li><strong>F. Wrap-up</strong> — Key takeaways &amp; lab preview (~5 min)</li>
+<li><strong>A. The Routing Problem</strong> — Why tool selection matters (~10 min)</li>
+<li><strong>B. Classifier-Based Routing</strong> — LLM categorizes queries (~15 min)</li>
+<li><strong>C. Programmatic Tool Calling</strong> — Batch tools without round-trips (~15 min)</li>
+<li><strong>D. Wrap-up</strong> — Key takeaways &amp; lab preview (~5 min)</li>
 </ul>
 </section>
-<section id="the-multi-agent-level" class="slide level2">
-<h2>The Multi-Agent Level</h2>
-<p>Recall from Session 1 — Level 4 on the autonomy continuum:</p>
-<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TB
-    O[Orchestrator] --&gt; R[Researcher]
-    O --&gt; A[Analyst]
-    O --&gt; W[Writer]
-    R --&gt;|findings| O
-    A --&gt;|analysis| O
-    W --&gt;|draft| O
-    A -.-&gt;|review| W
-
-    style O fill:#1C355E,stroke:#00C9A7,color:white
-    style R fill:#00C9A7,stroke:#1C355E,color:#1C355E
-    style A fill:#9B8EC0,stroke:#1C355E,color:#1C355E
-    style W fill:#FF7A5C,stroke:#1C355E,color:#1C355E
-</pre>
+<section id="the-tool-proliferation-problem" class="slide level2">
+<h2>The Tool Proliferation Problem</h2>
+<p>Your agent starts with 3 tools. Then it grows:</p>
+<ul>
+<li><code>search_web</code>, <code>search_news</code>, <code>search_academic</code></li>
+<li><code>get_stock_price</code>, <code>get_financial_report</code>, <code>calculate_roi</code></li>
+<li><code>read_pdf</code>, <code>summarize_document</code>, <code>extract_tables</code></li>
+<li><code>send_email</code>, <code>create_calendar_event</code>, <code>query_database</code></li>
+</ul>
+<div class="fragment">
+<p><strong>Result:</strong> 20+ tools crammed into every context window.</p>
 </div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p><strong>Key characteristic:</strong> Multiple specialized agents coordinated by an orchestrator, each with distinct roles and tools.</p>
 </section>
-<section id="the-single-agent-bottleneck" class="slide level2">
-<h2>The Single-Agent Bottleneck</h2>
-<p>Your <code>ReactAgent</code> from the tool-calling module is powerful, but has limits:</p>
-<ol type="1">
-<li class="fragment"><strong>Context window saturation</strong> — research + analysis + writing crams everything into one conversation</li>
-<li class="fragment"><strong>Role confusion</strong> — “research thoroughly AND write concisely” produces mediocre results at both</li>
-<li class="fragment"><strong>Sequential execution</strong> — one agent can only do one thing at a time</li>
-</ol>
-</section>
-<section id="when-multi-agent-actually-helps" class="slide level2">
-<h2>When Multi-Agent Actually Helps</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 27%">
-<col style="width: 37%">
-<col style="width: 35%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Scenario</th>
-<th style="text-align: left;">Single Agent</th>
-<th style="text-align: left;">Multi-Agent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Simple research question</td>
-<td style="text-align: left;">Perfect</td>
-<td style="text-align: left;">Overkill</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Deep research + polished report</td>
-<td style="text-align: left;">Context overload by step 8</td>
-<td style="text-align: left;">Specialists stay focused</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Compare 3+ independent topics</td>
-<td style="text-align: left;">Sequential, slow</td>
-<td style="text-align: left;">Parallel research agents</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Tasks needing quality gates</td>
-<td style="text-align: left;">Agent grades its own work</td>
-<td style="text-align: left;">Analyst reviews Researcher</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">User needs progress by stage</td>
-<td style="text-align: left;">One blob at the end</td>
-<td style="text-align: left;">Stream results per specialist</td>
-</tr>
-</tbody>
-</table>
+<section id="why-more-tools-better-agent" class="slide level2">
+<h2>Why More Tools ≠ Better Agent</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Context Window Pollution</strong></p>
+<ul>
+<li>Every tool schema consumes tokens</li>
+<li>20 tools = ~2000 tokens per request</li>
+<li>Less space for reasoning and memory</li>
+<li>Higher latency, higher cost</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Decision Confusion</strong></p>
+<ul>
+<li>Model sees too many options</li>
+<li>May pick wrong tool</li>
+<li>May call multiple similar tools</li>
+<li>Inconsistent behavior</li>
+</ul>
+</div></div>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -310,103 +260,288 @@
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>The #1 Mistake</strong></p>
+<p><strong>The Insight</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>Premature decomposition</strong> — creating 5 agents for a task that one agent handles fine. Always start with a single agent. Only split when you hit a bottleneck.</p>
-<section id="complexity-note" class="slide level2">
-<h2>Complexity Note</h2>
-<p>Multi-agent systems are the most complex architecture on the autonomy continuum: - Most difficult to debug and monitor - Highest cost and latency - <strong>Justify only for multi-faceted tasks</strong></p>
+<p>The agent doesn’t need ALL tools for EVERY query. It only needs the RELEVANT ones.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
+<section id="the-solution-dynamic-tool-routing" class="slide level2">
+<h2>The Solution: Dynamic Tool Routing</h2>
+<div class="cell" data-reveal="true" data-fig-width="10" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    Q["User Query"] --&gt; R["Router"]
+    R --&gt;|"Financial"| TF["Finance Tools&lt;br/&gt;(3 tools)"]
+    R --&gt;|"Academic"| TA["Academic Tools&lt;br/&gt;(4 tools)"]
+    R --&gt;|"General"| TG["General Tools&lt;br/&gt;(5 tools)"]
+    TF --&gt; A["Agent"]
+    TA --&gt; A
+    TG --&gt; A
+
+    style R fill:#1C355E,stroke:#00C9A7,color:white
+    style Q fill:#00C9A7,stroke:#1C355E,color:#1C355E
+    style A fill:#FF7A5C,stroke:#1C355E,color:#1C355E
+</pre>
+</div>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
+<p>The router selects a subset of tools before the agent runs.</p>
+</section></section>
+<section>
+<section id="b.-classifier-based-routing" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #9B8EC0)">
+<h1>B. Classifier-Based Routing</h1>
+<p>Using a small LLM to categorize queries</p>
+</section>
+<section id="how-classifier-routing-works" class="slide level2">
+<h2>How Classifier Routing Works</h2>
+<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant U as User
+    participant C as Classifier LLM
+    participant T as Tool Registry
+    participant A as Agent
+
+    U-&gt;&gt;C: "What's Apple's stock price?"
+    C-&gt;&gt;C: Classify domain
+    C--&gt;&gt;C: Domain = "Financial"
+    C-&gt;&gt;T: Get tools for "Financial"
+    T--&gt;&gt;C: [get_stock_price, calculate_roi]
+    C-&gt;&gt;A: Agent + 2 tools
+    A-&gt;&gt;U: "$178.72"
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-classifier-prompt" class="slide level2">
+<h2>The Classifier Prompt</h2>
+<p>A small, fast model (GPT-4o-mini, Claude Haiku) classifies the query:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>CLASSIFIER_PROMPT <span class="op">=</span> <span class="st">"""Classify this query into ONE domain.</span></span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a><span class="st">Domains: financial, academic, general, technical</span></span>
+<span id="cb1-4"><a href=""></a></span>
+<span id="cb1-5"><a href=""></a><span class="st">Query: </span><span class="sc">{query}</span></span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a><span class="st">Respond with ONLY the domain name, nothing else.</span></span>
+<span id="cb1-8"><a href=""></a><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p><strong>Trade-off:</strong> Fast and cheap (~$0.0001 per query), but requires predefined categories.</p>
+</div>
+</section>
+<section id="classifier-router-implementation" class="slide level2 smaller">
+<h2>Classifier Router Implementation</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-code-line-numbers="|1-4|6-8|10-12|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="kw">class</span> ClassifierRouter:</span>
+<span id="cb2-2"><a href=""></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, domain_tool_map: <span class="bu">dict</span>[<span class="bu">str</span>, <span class="bu">list</span>[<span class="bu">str</span>]]):</span>
+<span id="cb2-3"><a href=""></a>        <span class="va">self</span>.domain_tool_map <span class="op">=</span> domain_tool_map</span>
+<span id="cb2-4"><a href=""></a>        </span>
+<span id="cb2-5"><a href=""></a>    <span class="kw">def</span> classify(<span class="va">self</span>, query: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb2-6"><a href=""></a>        response <span class="op">=</span> completion(</span>
+<span id="cb2-7"><a href=""></a>            model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb2-8"><a href=""></a>            messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: CLASSIFIER_PROMPT.<span class="bu">format</span>(query<span class="op">=</span>query)}]</span>
+<span id="cb2-9"><a href=""></a>        )</span>
+<span id="cb2-10"><a href=""></a>        <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content.strip().lower()</span>
+<span id="cb2-11"><a href=""></a>    </span>
+<span id="cb2-12"><a href=""></a>    <span class="kw">def</span> select_tools(<span class="va">self</span>, query: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[Tool]:</span>
+<span id="cb2-13"><a href=""></a>        domain <span class="op">=</span> <span class="va">self</span>.classify(query)</span>
+<span id="cb2-14"><a href=""></a>        tool_names <span class="op">=</span> <span class="va">self</span>.domain_tool_map.get(domain, [])</span>
+<span id="cb2-15"><a href=""></a>        <span class="cf">return</span> [registry.get_tool(name) <span class="cf">for</span> name <span class="kw">in</span> tool_names]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="when-classifier-routing-works-well" class="slide level2">
+<h2>When Classifier Routing Works Well</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Good For</th>
+<th style="text-align: left;">Not Good For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Clear domain boundaries</td>
+<td style="text-align: left;">Overlapping domains</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fixed tool categories</td>
+<td style="text-align: left;">Ad-hoc tool additions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Low-latency requirements</td>
+<td style="text-align: left;">Nuanced query understanding</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Budget constraints</td>
+<td style="text-align: left;">Cross-domain queries</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<blockquote>
+<p><strong>Rule of thumb:</strong> If you can list your domains on one hand, classifier routing is a good starting point.</p>
+</blockquote>
 </div>
 </section></section>
 <section>
-<section id="b.-specialist-roles" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #9B8EC0)">
-<h1>B. Specialist Roles</h1>
-<p>Same brain, different personalities</p>
+<section id="c.-semantic-routing" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #FF7A5C)">
+<h1>C. Semantic Routing</h1>
+<p>When classifiers aren’t enough</p>
 </section>
-<section id="the-specialization-pattern" class="slide level2">
-<h2>The Specialization Pattern</h2>
-<p>Each specialist is a <code>ReactAgent</code> with:</p>
+<section id="from-categories-to-similarity" class="slide level2">
+<h2>From Categories to Similarity</h2>
+<p><strong>Problem with classifiers:</strong> You must define categories upfront.</p>
+<p><strong>Semantic routing:</strong> Match the query to tools based on meaning, not labels.</p>
 <ul>
-<li>A <strong>focused system prompt</strong> that constrains its role</li>
-<li>A <strong>curated tool set</strong> (researchers get search, writers get formatting)</li>
-<li><strong>Lower max_steps</strong> (specialists finish faster)</li>
+<li>Embed each tool’s description at startup</li>
+<li>Embed the user query at runtime</li>
+<li>Retrieve the top-K most similar tools — inject only those into context</li>
 </ul>
-<div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="co"># The code is identical — only the prompt and tools differ</span></span>
-<span id="cb1-2"><a href=""></a>researcher <span class="op">=</span> ReactAgent(model<span class="op">=</span><span class="st">"gpt-4o"</span>, max_steps<span class="op">=</span><span class="dv">8</span>, system_prompt<span class="op">=</span>RESEARCHER_PROMPT)</span>
-<span id="cb1-3"><a href=""></a>researcher.tools <span class="op">=</span> [search, web_reader, document_retrieval]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>More on RAG in Module 4</strong></p>
+</div>
+<div class="callout-content">
+<p>The underlying technique (embeddings + similarity search) is covered in depth in <strong>Module 4</strong>. The same pipeline applies here: swap documents for tool schemas.</p>
+</div>
+</div>
 </div>
 </section>
-<section id="the-specialization-recipe" class="slide level2 smaller">
-<h2>The Specialization Recipe</h2>
-<p>Each specialist prompt must define:</p>
+<section id="the-routedagent-pattern" class="slide level2">
+<h2>The RoutedAgent Pattern</h2>
+<p>Combine routing with the agent loop for efficient execution:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="kw">class</span> RoutedAgent:</span>
+<span id="cb3-2"><a href=""></a>    <span class="kw">def</span> run(<span class="va">self</span>, query: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb3-3"><a href=""></a>        selected_tools <span class="op">=</span> <span class="va">self</span>.router.select_tools(query)   <span class="co"># Route first</span></span>
+<span id="cb3-4"><a href=""></a>        <span class="cf">return</span> <span class="va">self</span>.base_agent.run(query, tools<span class="op">=</span>selected_tools)  <span class="co"># Then act</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="context-window-savings" class="slide level2">
+<h2>Context Window Savings</h2>
 <table class="caption-top">
-<colgroup>
-<col style="width: 55%">
-<col style="width: 45%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Component</th>
-<th style="text-align: left;">Purpose</th>
+<th style="text-align: left;">Scenario</th>
+<th style="text-align: left;">Tools in Context</th>
+<th style="text-align: left;">Tool Schema Tokens</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Role boundary</strong></td>
-<td style="text-align: left;">“ONLY do X — never do Y”</td>
+<td style="text-align: left;">Standard Agent</td>
+<td style="text-align: left;">20 tools</td>
+<td style="text-align: left;">~2000 tokens</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Quality standard</strong></td>
-<td style="text-align: left;">What good output looks like</td>
+<td style="text-align: left;">Routed Agent (top-5)</td>
+<td style="text-align: left;">5 tools</td>
+<td style="text-align: left;">~500 tokens</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Failure behavior</strong></td>
-<td style="text-align: left;">What to do when the primary approach doesn’t work</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Output format</strong></td>
-<td style="text-align: left;">Raw findings / structured analysis / polished prose</td>
+<td style="text-align: left;"><strong>Savings</strong></td>
+<td style="text-align: left;">-15 tools</td>
+<td style="text-align: left;"><strong>~1500 tokens</strong></td>
 </tr>
 </tbody>
 </table>
 <div class="fragment">
-<table class="caption-top">
-<colgroup>
-<col style="width: 44%">
-<col style="width: 25%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Specialist</th>
-<th style="text-align: left;">Tools</th>
-<th style="text-align: left;">Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Researcher</td>
-<td style="text-align: left;"><code>search</code>, <code>web_reader</code>, <code>document_retrieval</code></td>
-<td style="text-align: left;">Raw findings with citations</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Analyst</td>
-<td style="text-align: left;">Reasoning-only (no search)</td>
-<td style="text-align: left;">Structured analysis with confidence ratings</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Writer</td>
-<td style="text-align: left;">Formatting-only (pure generation)</td>
-<td style="text-align: left;">Polished document for target audience</td>
-</tr>
-</tbody>
-</table>
+<p><strong>Impact:</strong> 75% less token overhead — more room for reasoning, lower latency and cost.</p>
+</div>
+</section></section>
+<section>
+<section id="d.-programmatic-tool-calling" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #9B8EC0, #1C355E)">
+<h1>D. Programmatic Tool Calling</h1>
+<p>Eliminate round-trips for multi-tool workflows</p>
+</section>
+<section id="the-round-trip-problem" class="slide level2">
+<h2>The Round-Trip Problem</h2>
+<p>Traditional tool calling: <strong>N tools = N model round-trips</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="10" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant M as Model
+    participant T as Tools
+    
+    M-&gt;&gt;T: Call tool_1
+    T--&gt;&gt;M: Result (in context)
+    M-&gt;&gt;T: Call tool_2
+    Note over M,T: ...
+    M-&gt;&gt;T: Call tool_n
+    T--&gt;&gt;M: Result (in context)
+    M-&gt;&gt;M: Final answer
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Each round-trip: latency + token overhead + cost</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="how-programmatic-tool-calling-works" class="slide level2 smaller">
+<h2>How Programmatic Tool Calling Works</h2>
+<p>Claude writes <strong>code</strong> that calls your tools — no model in the loop:</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell" data-reveal="true" data-fig-width="10" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant M as Model
+    participant C as Code Execution
+    participant T as Tools
+    
+    M-&gt;&gt;C: Write code to call tools
+    C-&gt;&gt;T: tool_1()
+    T--&gt;&gt;C: Result
+    Note over C,T: ...
+    C-&gt;&gt;T: tool_n()
+    T--&gt;&gt;C: Result
+    C-&gt;&gt;C: Process/filter results
+    C--&gt;&gt;M: Final output only
+    M-&gt;&gt;M: Response
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -416,198 +551,95 @@
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>You will write the actual prompts in Lab 2.</p>
+<p><strong>Key insight:</strong> Tool results stay in code execution — only final output reaches context</p>
 </div>
 </div>
 </div>
-</div>
-</section></section>
-<section>
-<section id="c.-orchestration-patterns" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #FF7A5C)">
-<h1>C. Orchestration Patterns</h1>
-<p>Three ways to coordinate agents</p>
+</div></div>
 </section>
-<section id="pattern-1-pipeline-relay-race" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Pattern 1: Pipeline (Relay Race)</h2>
-<p>Agents execute <strong>sequentially</strong>, each passing output to the next.</p>
-<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-    R["Researcher"] --&gt;|findings| A["Analyst"]
-    A --&gt;|analysis| W["Writer"]
-    W --&gt;|report| O["Output"]
-
-    style R fill:#00C9A7,stroke:#1C355E,color:#1C355E
-    style A fill:#9B8EC0,stroke:#1C355E,color:#1C355E
-    style W fill:#FF7A5C,stroke:#1C355E,color:#1C355E
-    style O fill:#1C355E,stroke:#00C9A7,color:white
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<ul>
-<li><strong>Pros:</strong> Simple, predictable, easy to debug</li>
-<li><strong>Cons:</strong> Slow (no parallelism), each agent waits for the previous one</li>
-<li><strong>Use when:</strong> Tasks have clear sequential dependencies</li>
-</ul>
-</div>
+<section id="the-allowed_callers-pattern" class="slide level2">
+<h2>The <code>allowed_callers</code> Pattern</h2>
+<p>Mark tools as callable from code execution:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a>tools <span class="op">=</span> [</span>
+<span id="cb4-2"><a href=""></a>    {<span class="st">"type"</span>: <span class="st">"code_execution_20260120"</span>, <span class="st">"name"</span>: <span class="st">"code_execution"</span>},</span>
+<span id="cb4-3"><a href=""></a>    {</span>
+<span id="cb4-4"><a href=""></a>        <span class="st">"name"</span>: <span class="st">"query_database"</span>,</span>
+<span id="cb4-5"><a href=""></a>        <span class="st">"description"</span>: <span class="st">"Execute a SQL query. Returns JSON."</span>,</span>
+<span id="cb4-6"><a href=""></a>        <span class="st">"input_schema"</span>: {<span class="st">"type"</span>: <span class="st">"object"</span>, <span class="st">"properties"</span>: {<span class="st">"sql"</span>: {<span class="st">"type"</span>: <span class="st">"string"</span>}}},</span>
+<span id="cb4-7"><a href=""></a>        <span class="st">"allowed_callers"</span>: [<span class="st">"code_execution_20260120"</span>],  <span class="co"># &lt;-- Key field</span></span>
+<span id="cb4-8"><a href=""></a>    },</span>
+<span id="cb4-9"><a href=""></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><code>allowed_callers</code></th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>["direct"]</code></td>
+<td style="text-align: left;">Only model can call (default)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>["code_execution_20260120"]</code></td>
+<td style="text-align: left;">Only from code execution</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Both</td>
+<td style="text-align: left;">Callable either way</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="pattern-2-hub-and-spoke-supervisor" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Pattern 2: Hub-and-Spoke (Supervisor)</h2>
-<p>A central <strong>Orchestrator</strong> assigns tasks and collects results.</p>
-<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TB
-    O["Orchestrator&lt;br/&gt;(Supervisor)"]
-    O --&gt;|assign| R1["Researcher 1"]
-    O --&gt;|assign| R2["Researcher 2"]
-    O --&gt;|assign| A["Analyst"]
-    R1 --&gt;|results| O
-    R2 --&gt;|results| O
-    A --&gt;|analysis| O
-
-    style O fill:#1C355E,stroke:#00C9A7,color:white
-    style R1 fill:#00C9A7,stroke:#1C355E,color:#1C355E
-    style R2 fill:#00C9A7,stroke:#1C355E,color:#1C355E
-    style A fill:#9B8EC0,stroke:#1C355E,color:#1C355E
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<ul>
-<li><strong>Pros:</strong> Parallel execution, orchestrator controls flow</li>
-<li><strong>Cons:</strong> Orchestrator is a single point of failure</li>
-<li><strong>Use when:</strong> Tasks have independent sub-problems</li>
-</ul>
-</div>
+<section id="example-batch-processing" class="slide level2 smaller">
+<h2>Example: Batch Processing</h2>
+<p>Query sales for 5 regions, return only the top performer:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="co"># Claude writes this code internally</span></span>
+<span id="cb5-2"><a href=""></a>regions <span class="op">=</span> [<span class="st">"West"</span>, <span class="st">"East"</span>, <span class="st">"Central"</span>, <span class="st">"North"</span>, <span class="st">"South"</span>]</span>
+<span id="cb5-3"><a href=""></a>results <span class="op">=</span> {}</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a><span class="cf">for</span> region <span class="kw">in</span> regions:</span>
+<span id="cb5-6"><a href=""></a>    data <span class="op">=</span> <span class="cf">await</span> query_database(<span class="ss">f"SELECT SUM(revenue) FROM sales WHERE region='</span><span class="sc">{</span>region<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb5-7"><a href=""></a>    results[region] <span class="op">=</span> data[<span class="dv">0</span>][<span class="st">"sum"</span>]</span>
+<span id="cb5-8"><a href=""></a></span>
+<span id="cb5-9"><a href=""></a>top_region <span class="op">=</span> <span class="bu">max</span>(results.items(), key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>])</span>
+<span id="cb5-10"><a href=""></a><span class="bu">print</span>(<span class="ss">f"Top region: </span><span class="sc">{</span>top_region[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> with $</span><span class="sc">{</span>top_region[<span class="dv">1</span>]<span class="sc">:,}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>What reaches context:</strong> <code>"Top region: West with $2,340,000"</code> — not all 5 query results</p>
 </section>
-<section id="pattern-3-shared-workspace" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Pattern 3: Shared Workspace</h2>
-<p>Agents read from and write to a <strong>shared state</strong>.</p>
-<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TB
-    R["Researcher"] --&gt;|write| WS["Shared Workspace&lt;br/&gt;(entries by type)"]
-    A["Analyst"] --&gt;|read/write| WS
-    W["Writer"] --&gt;|read/write| WS
-    WS --&gt;|read| A
-    WS --&gt;|read| W
-
-    style R fill:#00C9A7,stroke:#1C355E,color:#1C355E
-    style A fill:#9B8EC0,stroke:#1C355E,color:#1C355E
-    style W fill:#FF7A5C,stroke:#1C355E,color:#1C355E
-    style WS fill:#1C355E,stroke:#00C9A7,color:white
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<ul>
-<li><strong>Pros:</strong> Flexible, agents can iterate on shared context</li>
-<li><strong>Cons:</strong> Coordination complexity — who reads what and when?</li>
-<li><strong>Use when:</strong> Tasks require iterative refinement</li>
-</ul>
-</div>
-</section>
-<section id="our-architecture-hybrid" class="slide level2">
-<h2>Our Architecture: Hybrid</h2>
-<p>We combine <strong>Hub-and-Spoke</strong> + <strong>Shared Workspace</strong>:</p>
-<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TB
-    O["Orchestrator"]
-    O --&gt;|"Phase 1"| R["Researcher(s)"]
-    R --&gt;|write| WS["Shared Workspace"]
-    O --&gt;|"Phase 2"| A["Analyst"]
-    WS --&gt;|read| A
-    A --&gt;|write| WS
-    O --&gt;|"Phase 3"| W["Writer"]
-    WS --&gt;|read| W
-    W --&gt;|write| WS
-    O --&gt;|"Phase 4"| QG["Quality Gate"]
-
-    style O fill:#1C355E,stroke:#00C9A7,color:white
-    style R fill:#00C9A7,stroke:#1C355E,color:#1C355E
-    style A fill:#9B8EC0,stroke:#1C355E,color:#1C355E
-    style W fill:#FF7A5C,stroke:#1C355E,color:#1C355E
-    style WS fill:#F0F4F8,stroke:#1C355E,color:#1C355E
-    style QG fill:#FF7A5C,stroke:#1C355E,color:#1C355E
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="d.-parallelism" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #00C9A7, #1C355E)">
-<h1>D. Parallelism</h1>
-<p>Running independent tasks concurrently</p>
-</section>
-<section id="the-mental-model-one-chef-no-idle-time" class="slide level2">
-<h2>The Mental Model: One Chef, No Idle Time</h2>
-<p>There is only <strong>one chef</strong> (the Event Loop — async is single-threaded):</p>
-<ul>
-<li class="fragment"><strong>Sequential</strong> — Chef puts a dish in the oven, then <strong>stands and stares at the oven</strong> until it’s done. Only then starts the next dish.</li>
-<li class="fragment"><strong>Async</strong> — Chef puts a dish in the oven, and while it’s cooking (waiting for the API response), <strong>immediately starts prepping the next dish</strong>. No idle time.</li>
-</ul>
-<div class="fragment">
-<blockquote>
-<p><code>await</code> is the moment the chef puts something in the oven and turns to the next task.<br>
-The chef never changes — <strong>one thread, no idle waiting</strong>.</p>
-</blockquote>
-</div>
-</section>
-<section id="the-sequential-problem" class="slide level2">
-<h2>The Sequential Problem</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="co"># Sequential: 6+ seconds for 3 independent topics</span></span>
-<span id="cb2-2"><a href=""></a>result_1 <span class="op">=</span> call_specialist(<span class="st">"researcher"</span>, <span class="st">"Topic A"</span>)  <span class="co"># ← blocks until done</span></span>
-<span id="cb2-3"><a href=""></a>result_2 <span class="op">=</span> call_specialist(<span class="st">"researcher"</span>, <span class="st">"Topic B"</span>)  <span class="co"># ← only starts after A</span></span>
-<span id="cb2-4"><a href=""></a>result_3 <span class="op">=</span> call_specialist(<span class="st">"researcher"</span>, <span class="st">"Topic C"</span>)  <span class="co"># ← only starts after B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="co"># Parallel: ~2 seconds — all 3 topics start at the same time</span></span>
-<span id="cb3-2"><a href=""></a>results <span class="op">=</span> <span class="cf">await</span> asyncio.gather(</span>
-<span id="cb3-3"><a href=""></a>    call_specialist(<span class="st">"researcher"</span>, <span class="st">"Topic A"</span>),  <span class="co"># ← starts immediately</span></span>
-<span id="cb3-4"><a href=""></a>    call_specialist(<span class="st">"researcher"</span>, <span class="st">"Topic B"</span>),  <span class="co"># ← starts immediately</span></span>
-<span id="cb3-5"><a href=""></a>    call_specialist(<span class="st">"researcher"</span>, <span class="st">"Topic C"</span>),  <span class="co"># ← starts immediately</span></span>
-<span id="cb3-6"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>3x speedup</strong> — same quality, a third of the time.</p>
-</div>
-</section>
-<section id="asyncio.gather-in-practice" class="slide level2 smaller">
-<h2>asyncio.gather in Practice</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="co"># From the lab: acompletion is natively async — no extra setup needed</span></span>
-<span id="cb4-2"><a href=""></a><span class="im">import</span> asyncio</span>
-<span id="cb4-3"><a href=""></a><span class="im">from</span> specialists <span class="im">import</span> call_specialist</span>
-<span id="cb4-4"><a href=""></a></span>
-<span id="cb4-5"><a href=""></a>topics <span class="op">=</span> [<span class="st">"AI regulation"</span>, <span class="st">"climate tech"</span>, <span class="st">"quantum computing"</span>]</span>
-<span id="cb4-6"><a href=""></a></span>
-<span id="cb4-7"><a href=""></a><span class="co"># List comprehension + gather = parallel calls</span></span>
-<span id="cb4-8"><a href=""></a>results <span class="op">=</span> <span class="cf">await</span> asyncio.gather(</span>
-<span id="cb4-9"><a href=""></a>    <span class="op">*</span>[call_specialist(<span class="st">"researcher"</span>, topic) <span class="cf">for</span> topic <span class="kw">in</span> topics]</span>
-<span id="cb4-10"><a href=""></a>)</span>
-<span id="cb4-11"><a href=""></a></span>
-<span id="cb4-12"><a href=""></a><span class="co"># results = [findings_A, findings_B, findings_C] — order is preserved</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="token-latency-gains" class="slide level2">
+<h2>Token &amp; Latency Gains</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Traditional (5 tools)</th>
+<th style="text-align: left;">Programmatic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Model turns</td>
+<td style="text-align: left;">5 round-trips</td>
+<td style="text-align: left;">1 turn</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tool results in context</td>
+<td style="text-align: left;">All 5</td>
+<td style="text-align: left;">None (filtered)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Latency</td>
+<td style="text-align: left;">~15 seconds</td>
+<td style="text-align: left;">~5 seconds</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tokens consumed</td>
+<td style="text-align: left;">~10,000</td>
+<td style="text-align: left;">~2,000</td>
+</tr>
+</tbody>
+</table>
 <div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -615,209 +647,129 @@ The chef never changes — <strong>one thread, no idle waiting</strong>.</p>
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>The One Rule</strong></p>
+<p><strong>The Multiplier Effect</strong></p>
 </div>
 <div class="callout-content">
-<p><code>await</code> is what enables parallelism. A function that never uses <code>await</code> <strong>blocks the entire event loop</strong> — all other tasks wait. Use <code>acompletion</code> (not <code>completion</code>).</p>
-</div>
-</div>
-</div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Advanced: Blocking Libraries</strong></p>
-</div>
-<div class="callout-content">
-<p>If you ever use a blocking library like <code>requests.get()</code>, wrap it: <code>await loop.run_in_executor(None, blocking_fn)</code>. In this course you won’t need this — <code>acompletion</code> is already async.</p>
+<p>Calling 10 tools directly uses ~10x the tokens of calling them programmatically and returning a summary.</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="when-to-parallelize" class="slide level2">
-<h2>When to Parallelize</h2>
+<section id="advanced-patterns" class="slide level2">
+<h2>Advanced Patterns</h2>
+<p><strong>Early termination</strong> — stop as soon as success criteria met:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="cf">for</span> endpoint <span class="kw">in</span> [<span class="st">"us-east"</span>, <span class="st">"eu-west"</span>, <span class="st">"apac"</span>]:</span>
+<span id="cb6-2"><a href=""></a>    status <span class="op">=</span> <span class="cf">await</span> check_health(endpoint)</span>
+<span id="cb6-3"><a href=""></a>    <span class="cf">if</span> status <span class="op">==</span> <span class="st">"healthy"</span>:</span>
+<span id="cb6-4"><a href=""></a>        <span class="bu">print</span>(<span class="ss">f"Found healthy: </span><span class="sc">{</span>endpoint<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-5"><a href=""></a>        <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Conditional tool selection</strong> — choose tool based on data:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>file_info <span class="op">=</span> <span class="cf">await</span> get_file_info(path)</span>
+<span id="cb7-2"><a href=""></a><span class="cf">if</span> file_info[<span class="st">"size"</span>] <span class="op">&lt;</span> <span class="dv">10000</span>:</span>
+<span id="cb7-3"><a href=""></a>    content <span class="op">=</span> <span class="cf">await</span> read_full_file(path)</span>
+<span id="cb7-4"><a href=""></a><span class="cf">else</span>:</span>
+<span id="cb7-5"><a href=""></a>    content <span class="op">=</span> <span class="cf">await</span> read_file_summary(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="when-to-use-programmatic-calling" class="slide level2">
+<h2>When to Use Programmatic Calling</h2>
 <table class="caption-top">
-<colgroup>
-<col style="width: 34%">
-<col style="width: 48%">
-<col style="width: 17%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Scenario</th>
-<th style="text-align: left;">Parallelize?</th>
-<th style="text-align: left;">Why</th>
+<th style="text-align: left;">Good For</th>
+<th style="text-align: left;">Less Ideal</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Research Topic A and Topic B</td>
-<td style="text-align: left;"><strong>Yes</strong></td>
-<td style="text-align: left;">Independent, no shared state</td>
+<td style="text-align: left;">3+ dependent tool calls</td>
+<td style="text-align: left;">Single tool call</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Research then Analyze</td>
-<td style="text-align: left;"><strong>No</strong></td>
-<td style="text-align: left;">Analysis depends on research results</td>
+<td style="text-align: left;">Large result filtering</td>
+<td style="text-align: left;">Simple responses</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Analyze 3 sources independently</td>
-<td style="text-align: left;"><strong>Yes</strong></td>
-<td style="text-align: left;">Each analysis is independent</td>
+<td style="text-align: left;">Loops over many items</td>
+<td style="text-align: left;">Need user feedback each step</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Write then Review</td>
-<td style="text-align: left;"><strong>No</strong></td>
-<td style="text-align: left;">Review depends on the draft</td>
+<td style="text-align: left;">Batch data processing</td>
+<td style="text-align: left;">Very fast single operations</td>
 </tr>
 </tbody>
 </table>
 <div class="fragment">
-<blockquote>
-<p><strong>Rule:</strong> Parallelize tasks that share no <strong>data dependencies</strong>.</p>
-</blockquote>
-</div>
-</section></section>
-<section>
-<section id="e.-quality-gates" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #9B8EC0)">
-<h1>E. Quality Gates</h1>
-<p>Review loops and conflict resolution</p>
-</section>
-<section id="the-review-loop" class="slide level2">
-<h2>The Review Loop</h2>
-<p>After the Writer produces a draft, the Analyst reviews it:</p>
-<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-    W["Writer&lt;br/&gt;produces draft"] --&gt; A["Analyst&lt;br/&gt;reviews draft"]
-    A --&gt;|"APPROVED"| F["Final Output"]
-    A --&gt;|"revision notes"| W
-
-    style W fill:#FF7A5C,stroke:#1C355E,color:#1C355E
-    style A fill:#9B8EC0,stroke:#1C355E,color:#1C355E
-    style F fill:#00C9A7,stroke:#1C355E,color:#1C355E
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>The Analyst checks for:</p>
-<ol type="1">
-<li>Factual accuracy against the research</li>
-<li>Missing important points</li>
-<li>Unsupported claims (low-confidence presented as fact)</li>
-<li>Structural issues</li>
-</ol>
-</div>
-</section>
-<section id="implementing-the-quality-gate" class="slide level2 smaller">
-<h2>Implementing the Quality Gate</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="cf">async</span> <span class="kw">def</span> _quality_gate(draft, max_revisions):</span>
-<span id="cb5-2"><a href=""></a>    <span class="cf">for</span> revision <span class="kw">in</span> <span class="bu">range</span>(max_revisions):</span>
-<span id="cb5-3"><a href=""></a>        review <span class="op">=</span> analyst.evaluate(draft)        <span class="co"># invented method name</span></span>
-<span id="cb5-4"><a href=""></a></span>
-<span id="cb5-5"><a href=""></a>        <span class="cf">if</span> review.approved:</span>
-<span id="cb5-6"><a href=""></a>            <span class="cf">return</span> draft                        <span class="co"># Done</span></span>
-<span id="cb5-7"><a href=""></a></span>
-<span id="cb5-8"><a href=""></a>        draft <span class="op">=</span> writer.revise(draft, feedback<span class="op">=</span>review)</span>
-<span id="cb5-9"><a href=""></a></span>
-<span id="cb5-10"><a href=""></a>    <span class="cf">return</span> draft                                <span class="co"># Ship after max revisions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="fragment">
-<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Always Set max_revisions</strong></p>
+<p><strong>Vendor Note</strong></p>
 </div>
 <div class="callout-content">
-<p>Without a limit, the Analyst and Writer can enter an infinite review loop.</p>
+<p>This pattern is currently Claude-specific (requires their code execution container). The concept generalizes — you can implement client-side with your own sandbox.</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="the-complete-workflow" class="slide level2 smaller">
-<h2>The Complete Workflow</h2>
-<div style="transform: scale(0.8)">
-<div class="cell" data-reveal="true" data-fig-width="10" data-fig-height="6" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">sequenceDiagram
-    participant O as Orchestrator
-    participant R as Researcher(s)
-    participant A as Analyst
-    participant W as Writer
-
-    O-&gt;&gt;R: Phase 1: Research (parallel)
-    R--&gt;&gt;O: Raw findings
-
-    O-&gt;&gt;A: Phase 2: Analyze findings
-    A--&gt;&gt;O: Structured analysis
-
-    O-&gt;&gt;W: Phase 3: Write report
-    W--&gt;&gt;O: Draft
-
-    O-&gt;&gt;A: Phase 4: Review draft
-    A--&gt;&gt;O: "Revision needed"
-    O-&gt;&gt;W: Revise with feedback
-    W--&gt;&gt;O: Revised draft
-    O-&gt;&gt;A: Review again
-    A--&gt;&gt;O: "APPROVED"
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</div>
+<section id="alternative-self-managed-execution" class="slide level2">
+<h2>Alternative: Self-Managed Execution</h2>
+<p>Not using Claude? You can implement the pattern yourself:</p>
+<ol type="1">
+<li>Give Claude a code execution tool (e.g., Python sandbox)</li>
+<li>Describe available functions in that environment</li>
+<li>Claude writes code → you execute → return result</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a><span class="co"># Your code execution tool</span></span>
+<span id="cb8-2"><a href=""></a>{</span>
+<span id="cb8-3"><a href=""></a>    <span class="st">"name"</span>: <span class="st">"execute_python"</span>,</span>
+<span id="cb8-4"><a href=""></a>    <span class="st">"description"</span>: <span class="st">"Run Python code. Available functions: search(), query_db(), send_email()"</span>,</span>
+<span id="cb8-5"><a href=""></a>    ...</span>
+<span id="cb8-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Trade-off:</strong> More control, but you manage security and infrastructure.</p>
 </section></section>
 <section>
-<section id="f.-wrap-up" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #00C9A7)">
-<h1>F. Wrap-up</h1>
+<section id="e.-wrap-up" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #00C9A7)">
+<h1>E. Wrap-up</h1>
 
 </section>
 <section id="key-takeaways" class="slide level2">
 <h2>Key Takeaways</h2>
 <ol type="1">
-<li><strong>Multi-agent is not always better</strong> — start with single agent, split at bottlenecks</li>
-<li><strong>Specialization = prompt + tools</strong> — same ReactAgent code, different personality</li>
-<li><strong>Three patterns:</strong> Pipeline, Hub-and-Spoke, Shared Workspace</li>
-<li><strong>Parallelize independent tasks</strong> — <code>asyncio.gather</code> for 3x+ speedups</li>
-<li><strong>Quality gates prevent bad output</strong> — but always set a <code>max_revisions</code> limit</li>
+<li><strong>Tool proliferation</strong> hurts performance — route to reduce context bloat</li>
+<li><strong>Classifier routing</strong> uses a small LLM to categorize queries (fast, rigid)</li>
+<li><strong>Semantic routing</strong> applies RAG on tool descriptions — covered in depth in Module 4</li>
+<li><strong>Programmatic calling</strong> eliminates round-trips — Claude writes code that calls tools</li>
+<li><strong>Combine patterns:</strong> route to select tools, programmatic calling to execute efficiently</li>
 </ol>
 </section>
-<section id="lab-preview-the-newsroom" class="slide level2">
-<h2>Lab Preview: The Newsroom</h2>
+<section id="lab-preview-efficient-tool-calling" class="slide level2">
+<h2>Lab Preview: Efficient Tool Calling</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Step 1: The Specialists</strong></p>
+<p><strong>Part 1: Classifier Router</strong></p>
 <ul>
-<li>Build Researcher, Analyst, Writer</li>
-<li>Configure system prompts and tools</li>
+<li>Implement <code>ClassifierRouter</code></li>
+<li>Map domains to tool sets</li>
 </ul>
-<p><strong>Step 2: The Orchestrator</strong></p>
+<p><strong>Part 2: Semantic Router</strong></p>
 <ul>
-<li>Implement <code>MultiAgentOrchestrator</code></li>
-<li>Parallel research with <code>asyncio.gather</code></li>
+<li>Build <code>SemanticToolSelector</code></li>
+<li>Index tool descriptions</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<p><strong>Step 3: The Quality Gate</strong></p>
+<p><strong>Part 3: Routed Agents</strong></p>
 <ul>
-<li>Add the review loop</li>
-<li>Set <code>max_revisions</code> limit</li>
-<li>Test with a comparison query</li>
+<li>Create <code>RoutedAgent</code> wrapper</li>
+<li>Compare context usage</li>
+</ul>
+<p><strong>Part 4: Programmatic Calling</strong></p>
+<ul>
+<li>Explore <code>allowed_callers</code> pattern</li>
+<li>Measure token savings</li>
 </ul>
 </div></div>
 <div class="fragment">
@@ -827,7 +779,7 @@ The chef never changes — <strong>one thread, no idle waiting</strong>.</p>
 <section id="questions" class="slide level2" data-background-gradient="linear-gradient(135deg, #1C355E, #9B8EC0)">
 <h2>Questions?</h2>
 <div class="r-fit-text">
-<p>Session 2 Complete</p>
+<p>Session 3 Complete</p>
 </div>
 
 </section></section>
@@ -840,19 +792,19 @@ The chef never changes — <strong>one thread, no idle waiting</strong>.</p>
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="02_patterns_of_collaboration_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="03_efficient_tool_calling_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
