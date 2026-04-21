@@ -1,6 +1,8 @@
 .env
 *.pyc
 03_ai_agents/lab/.deepeval/*
+.ipynb_checkpoints
 .ipynb_checkpoints/
+**/.ipynb_checkpoints
 .venv/
 .vscode/
