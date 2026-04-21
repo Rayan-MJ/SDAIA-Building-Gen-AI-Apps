@@ -9,7 +9,7 @@
 <link href="02_api_and_provider_landscape_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <meta name="dcterms.date" content="2026-04-20">
+  <meta name="dcterms.date" content="2026-04-21">
   <title>API &amp; Provider Landscape</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -204,7 +204,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2026-04-20</p>
+  <p class="date">2026-04-21</p>
 </section>
 <section>
 <section id="a.-the-provider-landscape" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #00C9A7)">
@@ -231,20 +231,20 @@
 <pre class="mermaid mermaid-js">graph TD
     A["Your Application"] --&gt; B{"Model Access&lt;br/&gt;Strategy"}
     B --&gt; C["Proprietary APIs"]
-    B --&gt; D["Aggregator APIs"]
-    B --&gt; E["Self-Hosted"]
+    B --&gt; D["Inference Providers"]
+    B --&gt; E["Self-Hosted / Local"]
 
     C --&gt; C1["OpenAI / GPT-4"]
     C --&gt; C2["Anthropic / Claude"]
     C --&gt; C3["Google / Gemini"]
 
-    D --&gt; D1["OpenRouter"]
+    D --&gt; D1["OpenRouter (Aggregator)"]
     D --&gt; D2["Together AI"]
-    D --&gt; D3["Groq"]
+    D --&gt; D3["Groq (LPU)"]
 
-    E --&gt; E1["Ollama (Local)"]
-    E --&gt; E2["vLLM (Cloud GPU)"]
-    E --&gt; E3["AWS Bedrock"]
+    E --&gt; E1["Ollama (Desktop)"]
+    E --&gt; E2["vLLM (Server / Cloud)"]
+    E --&gt; E3["Private VPC (TGI)"]
 
     style B fill:#FF7A5C,stroke:#1C355E,color:#fff
     style C fill:#1C355E,stroke:#1C355E,color:#fff
@@ -270,8 +270,8 @@
 <tr class="header">
 <th><strong>Aspect</strong></th>
 <th><strong>Proprietary</strong></th>
-<th><strong>Aggregators (OpenRouter)</strong></th>
-<th><strong>Self-Hosted</strong></th>
+<th><strong>Inference Providers</strong></th>
+<th><strong>Self-Hosted / Local</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -334,6 +334,23 @@
 </ul>
 <p>Design with <strong>provider abstraction</strong> from day one.</p>
 </div></div>
+</section>
+<section id="a-moving-target-benchmarks" class="slide level2">
+<h2>A Moving Target: Benchmarks</h2>
+<div class="callout callout-important no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>The field moves fast. New models are released weekly — always check if a better tool has emerged for your use case.</p>
+</div>
+</div>
+</div>
+<p><strong>How to find the best model for your task:</strong></p>
+<ul>
+<li><a href="https://artificialanalysis.ai/">Artificial Analysis</a> — Comparison of performance, speed, and cost.</li>
+<li><a href="https://benchmarks.ksaa.gov.sa/b/balsam/leaderboard/">Balsam Leaderboard</a> — Specialized benchmarks for Arabic AI by KSAA.</li>
+<li><a href="https://silma.ai/arabic-llm-leaderboard">Arabic LLM Leaderboard</a> — Silma.ai’s ranking of Arabic language models.</li>
+<li><a href="https://huggingface.co/OALL">Open Arabic LLM Leaderboard (OALL)</a> — The community hub for Arabic model evaluation.</li>
+</ul>
 </section></section>
 <section>
 <section id="b.-api-anatomy" class="title-slide slide level1 sdaia-dark center" data-background-gradient="linear-gradient(135deg, #1C355E, #00C9A7)">
@@ -737,10 +754,11 @@
 <section id="key-takeaways" class="slide level2 sdaia-dark" data-background-color="#1C355E">
 <h2>Key Takeaways</h2>
 <ol type="1">
-<li><strong>Three access strategies</strong>: proprietary APIs, aggregators (like OpenRouter), self-hosted — choose based on cost, quality, latency, and privacy.</li>
+<li><strong>Three access strategies</strong>: proprietary APIs, inference providers (like OpenRouter), and self-hosted/local — choose based on cost, quality, latency, and privacy.</li>
 <li><strong>LiteLLM</strong> gives you a single, unified interface to 100+ model providers.</li>
 <li><strong>Context Windows</strong> are expensive and performance-bound—be strategic about what you include.</li>
 <li><strong>OpenRouter</strong> provides free access to strong models—perfect for prototyping.</li>
+<li><strong>Benchmarks</strong> move fast—use tools like <strong>Artificial Analysis</strong> and the <strong>OALL (Arabic LLM Leaderboard)</strong> to stay updated.</li>
 <li><strong>Security is non-negotiable</strong> — use <code>.env</code> and secrets managers.</li>
 <li><strong>Design for provider abstraction</strong> — make switching providers trivial.</li>
 </ol>

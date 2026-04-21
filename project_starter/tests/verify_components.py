@@ -1,19 +1,17 @@
-import sys
-import os
 import json
 import logging
-from dataclasses import dataclass
+import os
+import sys
 
-# Add project_starter root to path so "from src.X import Y" works
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from src.tools.registry import registry, Tool
-from src.observability.loop_detector import AdvancedLoopDetector
-from src.observability.tracer import tracer, AgentStep, ToolCallRecord
+from src.observability.loop_detector import LoopDetector
+from src.observability.observe import langfuse_context, observe
+from src.tools.registry import registry
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 def test_registry():
     logger.info("Testing Registry...")
@@ -36,55 +34,57 @@ def test_registry():
     assert result == "10-tested"
     logger.info("Registry Test Passed!")
 
+
 def test_loop_detector():
     logger.info("Testing Loop Detector...")
-    detector = AdvancedLoopDetector(exact_threshold=2, fuzzy_threshold=0.8)
+    detector = LoopDetector(exact_threshold=2, fuzzy_threshold=0.8)
 
-    # Test Exact Match
+    # Exact match detection — threshold=2 means 3rd identical call triggers it
     r1 = detector.check_tool_call("search", "python agents")
     assert not r1.is_looping
     r2 = detector.check_tool_call("search", "python agents")
-    assert r2.is_looping and r2.strategy == "exact"
+    assert not r2.is_looping
+    r3 = detector.check_tool_call("search", "python agents")
+    assert r3.is_looping and r3.strategy == "exact"
 
-    # Test Fuzzy Match
+    # Fuzzy match detection
     detector.reset()
     detector.check_tool_call("search", "python agents var 1")
-    detector.check_tool_call("search", "python agents var 2") # Not looping yet (threshold 2)
-    r3 = detector.check_tool_call("search", "python agents var 3") # Should trigger fuzzy
+    detector.check_tool_call("search", "python agents var 2")
+    detector.check_tool_call("search", "python agents var 3")
 
-    # Verify Jaccard works (logic check)
-    sim = detector._jaccard_similarity("a b c", "a b c")
-    assert sim == 1.0
-    sim = detector._jaccard_similarity("a b c", "x y z")
-    assert sim == 0.0
+    # Jaccard similarity sanity checks
+    assert detector._jaccard_similarity("a b c", "a b c") == 1.0
+    assert detector._jaccard_similarity("a b c", "x y z") == 0.0
 
     logger.info("Loop Detector Test Passed!")
 
-def test_tracer():
-    logger.info("Testing Tracer...")
-    trace_id = tracer.start_trace("VerificationAgent", "Test Query")
-    assert trace_id
 
-    step = AgentStep(
-        step_number=1,
-        reasoning="Testing",
-        tool_calls=[],
-        duration_ms=100
-    )
-    tracer.log_step(trace_id, step)
+def test_observe():
+    logger.info("Testing @observe decorator...")
 
-    tracer.end_trace(trace_id, "Final Answer")
+    @observe
+    def greet(name: str) -> str:
+        langfuse_context.update_current_observation(input=name, output=f"Hello, {name}!")
+        return f"Hello, {name}!"
 
-    trace_json = tracer.get_trace_json(trace_id)
-    trace_data = json.loads(trace_json)
+    result = greet("World")
+    assert result == "Hello, World!"
 
-    assert trace_data["trace_id"] == trace_id
-    assert trace_data["status"] == "completed"
-    assert len(trace_data["steps"]) == 1
+    # Child span
+    @observe("outer")
+    def outer():
+        @observe("inner")
+        def inner():
+            return 42
+        return inner()
 
-    logger.info("Tracer Test Passed!")
+    assert outer() == 42
+    logger.info("@observe Test Passed!")
+
 
 if __name__ == "__main__":
     test_registry()
     test_loop_detector()
-    test_tracer()
+    test_observe()
+    print("\nAll checks passed!")
