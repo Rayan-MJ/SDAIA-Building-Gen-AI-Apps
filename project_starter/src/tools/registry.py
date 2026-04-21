@@ -3,8 +3,10 @@ from typing import Any, Callable, Dict
 
 from pydantic import BaseModel, create_model
 
+
 class Tool:
     """A callable tool with schema."""
+
     def __init__(self, name: str, func: Callable, description: str):
         self.name = name
         self.func = func
@@ -12,29 +14,18 @@ class Tool:
         self.model = self._create_pydantic_model(func)
 
     def _create_pydantic_model(self, func: Callable) -> type[BaseModel]:
-        """Create a Pydantic model from function signature."""
         sig = inspect.signature(func)
         fields = {}
         for name, param in sig.parameters.items():
             if name == "self":
                 continue
-
-            annotation = param.annotation
-            if annotation == inspect.Parameter.empty:
-                annotation = str
-
+            annotation = param.annotation if param.annotation != inspect.Parameter.empty else str
             default = param.default
-            if default == inspect.Parameter.empty:
-                fields[name] = (annotation, ...)
-            else:
-                fields[name] = (annotation, default)
-
+            fields[name] = (annotation, ...) if default == inspect.Parameter.empty else (annotation, default)
         return create_model(f"{self.name}Schema", **fields)
 
     def to_openai_schema(self) -> dict:
-        """Convert tool to OpenAI function schema format using Pydantic."""
         schema = self.model.model_json_schema()
-
         return {
             "type": "function",
             "function": {
@@ -46,17 +37,18 @@ class Tool:
                     "required": schema.get("required", []),
                     "additionalProperties": False,
                 },
-                "strict": True
+                "strict": True,
             },
         }
 
     def execute(self, **kwargs) -> Any:
-        # Validate arguments using the model
-        validated_args = self.model(**kwargs)
-        return self.func(**validated_args.model_dump())
+        validated = self.model(**kwargs)
+        return self.func(**validated.model_dump())
+
 
 class ToolRegistry:
     """Registry for managing available tools."""
+
     def __init__(self):
         self._tools: Dict[str, Tool] = {}
         self._categories: Dict[str, list[str]] = {}
@@ -64,34 +56,33 @@ class ToolRegistry:
     def register(self, name: str, description: str, category: str = "general"):
         """
         Decorator to register a function as a tool.
-        
-        This method uses the Decorator Pattern to dynamically adding functionality 
-        (registration) to functions without modifying their structure.
+
+        Uses the Decorator Pattern to add registration to a function without
+        modifying its implementation — the original function is returned unchanged
+        so it can still be called directly.
         """
-        # TODO: Implement the decorator
-        # 1. Create a Tool instance from the function
-        # 2. Register it in self._tools dictionary
-        # 3. Add to category in self._categories
-        # 4. Return the original function (so it can still be called normally)
         def decorator(func: Callable):
+            tool = Tool(name=name, func=func, description=description)
+            self._tools[name] = tool
+            self._categories.setdefault(category, []).append(name)
             return func
+
         return decorator
 
     def get_tool(self, name: str) -> Tool | None:
-        # TODO: Return the tool by name
-        return None
+        return self._tools.get(name)
 
     def get_all_tools(self) -> list[Tool]:
-        # TODO: Return all tools
-        return []
+        return list(self._tools.values())
 
     def get_tools_by_category(self, category: str) -> list[Tool]:
-        # TODO: Return tools by category
-        return []
+        names = self._categories.get(category, [])
+        return [self._tools[n] for n in names if n in self._tools]
 
     def execute_tool(self, name: str) -> Callable:
-        # TODO: Get tool and return its execute method
-        pass
+        tool = self.get_tool(name)
+        return tool.execute if tool else None
+
 
 # Global registry instance
 registry = ToolRegistry()

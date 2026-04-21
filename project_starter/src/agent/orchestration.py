@@ -63,9 +63,9 @@ class OrchestratorAgent:
         #   research_output = research_result["answer"]
         #
         #   return {
-        #       "answer": research_output["answer"],
+        #       "answer": research_result["answer"],
         #       "metadata": {
-        #           "researcher_trace": research_result["metadata"].get("trace_id"),
+        #           "total_steps": research_result["metadata"].get("total_steps"),
         #       },
         #   }
         #

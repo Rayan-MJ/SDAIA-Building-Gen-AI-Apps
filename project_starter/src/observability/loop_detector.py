@@ -7,7 +7,7 @@ class LoopDetectionResult:
     message: str
     confidence: float
 
-class AdvancedLoopDetector:
+class LoopDetector:
     """
     Detects agent loops using three strategies.
     """

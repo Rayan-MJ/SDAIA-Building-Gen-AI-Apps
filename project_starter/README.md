@@ -17,17 +17,16 @@ project_starter/
     ├── exceptions.py        # Custom exceptions (complete)
     ├── logger.py            # Structured logging (complete)
     ├── main.py              # Typer CLI (TODO: wire OrchestratorAgent)
-    ├── utils.py             # Helpers (complete)
     ├── agent/
-    │   ├── base.py          # BaseAgent — __init__ + hooks complete; run() is TODO
+    │   ├── base.py          # BaseAgent — ReAct loop implemented (complete)
     │   ├── orchestration.py # OrchestratorAgent — entirely TODO (your design)
-    │   └── prompts.py       # System prompts for example roles you can use, or add your own
+    │   └── prompts.py       # System prompts for example roles TODO (your design)
     ├── observability/
-    │   ├── tracer.py        # AgentTracer, AgentStep, ToolCallRecord (complete)
-    │   ├── loop_detector.py # AdvancedLoopDetector (complete)
+    │   ├── observe.py       # @observe decorator & langfuse_context stub (complete)
+    │   ├── loop_detector.py # LoopDetector (complete)
     │   └── cost_tracker.py  # CostTracker (TODO: log_completion, print_cost_breakdown)
     └── tools/
-        ├── registry.py      # ToolRegistry (TODO: register, get_tool, …)
+        ├── registry.py      # ToolRegistry (complete)
         └── search_tool.py   # search_web + read_webpage (complete)
 ```
 
@@ -43,7 +42,7 @@ uv pip install -e .
 cp .env.example .env
 # Edit .env and add your OPENAI_API_KEY (or another provider key)
 
-# 3. Verify your environment before you start coding
+# 3. Verify the foundation
 uv run python tests/verify_components.py
 ```
 
@@ -51,41 +50,18 @@ uv run python tests/verify_components.py
 
 ## Student Build Order
 
-Work through the TODOs in this order — each step unlocks the next.
+Work through the remaining TODOs to complete the system.
 
-### Step 1 — `src/tools/registry.py`
-Implement `register()`, `get_tool()`, `get_all_tools()`,
-`get_tools_by_category()`, and `execute_tool()`.
+### Step 1 — `src/observability/cost_tracker.py`
+Implement `log_completion()` and `print_cost_breakdown()`. The foundation uses LiteLLM, so your cost tracker should extract usage from the standard response objects.
 
-**Teaches**: decorator pattern, registry pattern.
-**Verify**: `uv run python tests/verify_components.py` → `test_registry` passes.
-
----
-
-### Step 2 — `src/observability/cost_tracker.py`
-Implement `log_completion()` and `print_cost_breakdown()`.
-
-**Teaches**: token extraction from LiteLLM responses, cost APIs.
-**Verify**: `uv run python tests/verify_components.py` → all 3 tests pass.
+**Teaches**: token extraction, usage monitoring, cost calculation.
+**Verify**: `uv run python tests/verify_components.py` passes all checks.
 
 ---
 
-### Step 3 — `src/agent/base.py` → `run()`
-Implement the ReAct loop. The docstring in `run()` gives you step-by-step
-guidance. Key requirements:
-- Use `acompletion()` from LiteLLM for each step
-- Execute ALL tool calls **in parallel** with `asyncio.gather()`
-- Call the provided hook methods (`_on_step_start`, `_on_step_end`, `_on_loop_end`)
-- Handle errors gracefully
-
-**Teaches**: ReAct pattern, async parallel execution, observability hooks.
-**Verify**: `uv run python -m src.main "What is RAG?"` runs end-to-end (after Step 1).
-
----
-
-### Step 4 — `src/agent/orchestration.py` → `OrchestratorAgent`
-Design and implement your own multi-agent pipeline. There is no single
-correct answer — pick a strategy that interests you:
+### Step 2 — `src/agent/orchestration.py` → `OrchestratorAgent`
+Design and implement your own multi-agent pipeline. You have a working `BaseAgent` that handles reasoning and tool execution; now you must decide how to coordinate them.
 
 | Strategy | Description |
 |---|---|
@@ -95,12 +71,12 @@ correct answer — pick a strategy that interests you:
 | Planner-first | Planner breaks query → specialists execute |
 | Your own idea | Surprise us! |
 
-**Teaches**: multi-agent design, orchestration patterns.
+**Teaches**: multi-agent design, orchestration patterns, complex async workflows.
 
 ---
 
-### Step 5 — `src/main.py` → `research()`
-Wire `OrchestratorAgent` into the Typer CLI.
+### Step 3 — `src/main.py` → `research()`
+Wire your `OrchestratorAgent` into the Typer CLI so it can be called from the terminal.
 
 **Verify**: `uv run python -m src.main --query "Compare LLMs"` produces a full report.
 

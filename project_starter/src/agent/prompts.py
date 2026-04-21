@@ -13,8 +13,6 @@ Each sub-task should be:
 2. Ordered logically — later tasks can depend on earlier results.
 3. Labeled with the tool it will likely need (or "reasoning" if no tool is needed).
 
-Available tools: {tool_names}
-
 User Request: {query}
 """
 
