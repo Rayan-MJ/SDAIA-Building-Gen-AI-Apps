@@ -6,3 +6,4 @@
 **/.ipynb_checkpoints
 .venv/
 .vscode/
+**/__pycache__

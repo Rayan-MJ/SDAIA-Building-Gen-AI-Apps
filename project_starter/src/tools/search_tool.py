@@ -49,42 +49,52 @@ def validate_url(url: str) -> bool:
 )
 def search_web(query: str, max_results: int = 5) -> list[dict]:
     """
-    Search the web using DuckDuckGo (HTML).
+    Search the web using DuckDuckGo (HTML). Retries up to 5 times on failure.
     """
+    import time
+    # guard against models passing max_results as dict or string
+    try:
+        max_results = int(max_results) if not isinstance(max_results, int) else max_results
+    except (TypeError, ValueError):
+        max_results = 5
+
     url = "https://html.duckduckgo.com/html/"
     headers = {"User-Agent": "Mozilla/5.0"}
+    last_error = None
 
-    try:
-        response = requests.post(url, data={"q": query}, headers=headers, timeout=10)
-        response.raise_for_status()
-    except Exception as e:
-        logger.error(f"Search request failed: {e}")
-        # Return empty list gracefully instead of crashing the agent
-        return [{"title": "Error", "link": "", "snippet": f"Search failed: {str(e)}"}]
+    for attempt in range(1, 6):  # 5 attempts
+        try:
+            logger.info(f"Searching web for: '{query}' (attempt {attempt}/5)")
+            response = requests.post(url, data={"q": query}, headers=headers, timeout=10)
+            response.raise_for_status()
 
-    logger.info(f"Searching web for: '{query}'")
+            soup = BeautifulSoup(response.text, "html.parser")
+            results = []
+            for result in soup.find_all("div", class_="result", limit=max_results):
+                title_tag = result.find("a", class_="result__a")
+                snippet_tag = result.find("a", class_="result__snippet")
+                if title_tag and snippet_tag:
+                    link = title_tag["href"]
+                    if validate_url(link):
+                        results.append({
+                            "title": title_tag.get_text(strip=True),
+                            "link": link,
+                            "snippet": snippet_tag.get_text(strip=True)
+                        })
 
-    soup = BeautifulSoup(response.text, "html.parser")
-    results = []
-    for result in soup.find_all("div", class_="result", limit=max_results):
-        title_tag = result.find("a", class_="result__a")
-        snippet_tag = result.find("a", class_="result__snippet")
+            logger.info(f"Search returned {len(results)} results for '{query}'")
+            if not results:
+                logger.warning(f"No results found for '{query}' (Raw response length: {len(response.text)})")
+            return results
 
-        if title_tag and snippet_tag:
-            link = title_tag["href"]
-            # Basic validation on the result link too
-            if validate_url(link):
-                results.append({
-                    "title": title_tag.get_text(strip=True),
-                    "link": link,
-                    "snippet": snippet_tag.get_text(strip=True)
-                })
+        except Exception as e:
+            last_error = e
+            wait = 2 ** (attempt - 1)  # exponential backoff: 1s, 2s, 4s, 8s, 16s
+            logger.warning(f"Search attempt {attempt}/5 failed for '{query}': {e}. Retrying in {wait}s...")
+            time.sleep(wait)
 
-    logger.info(f"Search returned {len(results)} results for '{query}'")
-    if not results:
-        logger.warning(f"No results found for '{query}' (Raw response length: {len(response.text)})")
-
-    return results
+    logger.error(f"All 5 search attempts failed for '{query}': {last_error}")
+    return [{"title": "Error", "link": "", "snippet": f"Search failed after 5 attempts: {str(last_error)}"}]
 
 @registry.register(
     "read_webpage",
