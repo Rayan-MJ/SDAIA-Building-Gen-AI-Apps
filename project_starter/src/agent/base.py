@@ -18,6 +18,7 @@ from src.config import settings
 from src.observability.loop_detector import LoopDetector
 from src.observability.observe import langfuse_context, observe
 from src.tools.registry import registry
+import src.tools.search_tool  # noqa: F401 — registers search_web and read_webpage into registry
 
 logger = structlog.get_logger()
 
@@ -50,7 +51,7 @@ class BaseAgent:
         self.tools_schema = [tool.to_openai_schema() for tool in self.tools]
         self.loop_detector = LoopDetector()
 
-    @observe
+    @observe(self.agen)
     async def run(self, user_query: str) -> dict:
         """
         Execute the ReAct (Reasoning + Acting) loop to answer a user query.
@@ -77,7 +78,7 @@ class BaseAgent:
             if self.tools_schema:
                 call_kwargs["tools"] = self.tools_schema
                 call_kwargs["tool_choice"] = "auto"
-
+                
             response = await acompletion(**call_kwargs)
             message = response.choices[0].message
 
@@ -111,6 +112,17 @@ class BaseAgent:
             ])
             for tc, result in zip(message.tool_calls, tool_results):
                 messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
+                
+                # Check if agent output is stagnating (not making progress)
+                stagnation = self.loop_detector.check_output_stagnation(result)
+                if stagnation.is_looping:
+                    logger.warning("output_stagnation_detected", message=stagnation.message)
+                    print(f"INFO     [Loop Detector] {stagnation.message}")
+                    answer = f"Agent stopped: {stagnation.message}"
+                    break
+            else:
+                continue  # only hit if inner loop didn't break
+            break      # break outer loop if inner loop broke
 
         langfuse_context.update_current_observation(
             output=answer,
@@ -121,6 +133,7 @@ class BaseAgent:
     @observe("tool_call")
     async def _execute_tool(self, tool_name: str, arguments: dict) -> str:
         """Registry lookup + loop detection + asyncio.to_thread + error handling."""
+        logger.info("tool_call", tool=tool_name, args=arguments)
         langfuse_context.update_current_observation(
             input={"tool": tool_name, "args": arguments}
         )
@@ -145,7 +158,9 @@ class BaseAgent:
             return result
 
         try:
+            print(f"INFO     Specialist calling tool: {tool_name}...")
             result = str(await asyncio.to_thread(tool.execute, **arguments))
+            print(f"INFO     Tool result received (result: {result})")
         except ValidationError as e:
             logger.warning("tool_validation_failed", tool=tool_name, error=str(e))
             result = f"Error: Tool arguments validation failed. {e}"

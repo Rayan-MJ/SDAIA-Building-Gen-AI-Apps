@@ -35,9 +35,7 @@ class Tool:
                     "type": "object",
                     "properties": schema.get("properties", {}),
                     "required": schema.get("required", []),
-                    "additionalProperties": False,
                 },
-                "strict": True,
             },
         }
 
